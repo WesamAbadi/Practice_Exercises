@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace App4
 {
     class Program
-    {//
+    {
         static void Main(string[] args)
         {
             Console.WriteLine("What's your grade ? ");
