@@ -22,23 +22,39 @@ namespace AnimalCompetition
             string name;
             int birthYear, behaviourPoint, beautyPoint;
             int randomLimit = 10;
-
+            int numberOfPart = 0, sumOfScores = 0, maxScore = 0;
+            string winner="";
+            char input = 'Y';
 
             Random rand = new Random();
-
             behaviourPoint = rand.Next(randomLimit + 1);
             beautyPoint = rand.Next(randomLimit + 1);
 
+            while (Char.ToUpper(input) == 'Y')
+            {
+                Console.WriteLine("ANIMAL NAME: ");
+                name = Console.ReadLine();
 
-            Console.WriteLine("NAME: ");
-            name = Console.ReadLine();
+                Console.WriteLine("BIRTH YEAR: ");
+                Int32.TryParse(Console.ReadLine(), out birthYear);
 
-            Console.WriteLine("BIRTH YEAR: ");
-            Int32.TryParse(Console.ReadLine(), out birthYear);
+                myAnimal = new Animal(name, birthYear);
+                myAnimal.Scoring(behaviourPoint, beautyPoint);
+                Console.WriteLine(myAnimal);
+                numberOfPart++;
+                sumOfScores += myAnimal.ScorePoints;
+                if (myAnimal.ScorePoints > maxScore)
+                {
+                    maxScore = myAnimal.ScorePoints;
+                    winner = myAnimal.Name;
+                }
 
-            myAnimal = new Animal(name, birthYear);
-            myAnimal.Scoring(behaviourPoint, beautyPoint);
-            Console.WriteLine(myAnimal);
+
+                Console.WriteLine("\n ANY OTHER ANIMAL? ");
+                Char.TryParse(Console.ReadLine(), out input);
+            }
+
+            Console.WriteLine($"THE NUMBER OF ANIMALS IS: {numberOfPart} \nTHE SUM OF ALL SCORES IS: {sumOfScores}\nTHE MAXIMUM SCORE WAS: {maxScore} FOR THE ANIMAL '{winner}'");
 
             Console.ReadKey();
         }

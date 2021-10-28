@@ -8,8 +8,8 @@ namespace AnimalCompetition
 {
     class Animal
     {
-        string name;
-        int birthYear, behaviourPoint, beautyPoint, scorePoints;
+        private string name;
+        private int birthYear, behaviourPoint, beautyPoint, scorePoints;
 
         public static int currentYear, ageLimit;
         public Animal(string myName, int myBirthYear)
@@ -20,7 +20,7 @@ namespace AnimalCompetition
 
         public override string ToString()
         {
-            return $"ANIMAL {name} who was born in {birthYear} has a score of {scorePoints}";
+            return $"The animal {name} who was born in {birthYear} has a score of {scorePoints}";
         }
 
         internal void Scoring(int behave, int beauty)
@@ -32,13 +32,18 @@ namespace AnimalCompetition
                 scorePoints = Age() * behave + ((ageLimit - Age() * beauty));
             else
                 scorePoints = 0;
-            
 
         }
-
         private int Age()
         {
             return currentYear - birthYear;
         }
+
+
+
+        public string Name { get { return name; } }
+        public int ScorePoints { get { return scorePoints; } }
+        public int CurrentYear { get { return currentYear;} set {currentYear=value ;} }
+
     }
 }
